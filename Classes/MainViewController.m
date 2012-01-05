@@ -65,8 +65,7 @@
 -(void) updateUI {
     [_tableView reloadData];
 #define CSS @"<link rel=\"stylesheet\" href=\"frame.css\" type=\"text/css\">"
-    NSString* finalContent=[NSString stringWithFormat:@"%@\r\n%@",CSS,[_tableData valueForKey:@"question"]];
-    NSLog(@"%@",finalContent);
+    NSString* finalContent=[NSString stringWithFormat:@"%@%@",CSS,[[[_tableData valueForKey:@"question"]  stringByReplacingOccurrencesOfString:@"+" withString:@" "] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     [_webView loadHTMLString:finalContent baseURL:[NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]]];
 }
 
