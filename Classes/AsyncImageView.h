@@ -11,6 +11,7 @@
 @interface AsyncImageView : UIView {
     NSURLConnection* connection;
     NSMutableData* data;
+    NSURL* _url;
 }
 - (void)loadImageFromURL:(NSURL*)url;
 @end

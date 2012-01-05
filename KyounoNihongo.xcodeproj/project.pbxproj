@@ -11,7 +11,6 @@
 		0404FA8914ABFDB10072EDA3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FA8814ABFDB10072EDA3 /* MBProgressHUD.m */; };
 		0404FA8C14ABFEF70072EDA3 /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FA8B14ABFEF70072EDA3 /* LoadViewController.m */; };
 		0404FA9514AC07A90072EDA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FA9014AC07A90072EDA3 /* Localizable.strings */; };
-		0404FA9614AC07A90072EDA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FA9314AC07A90072EDA3 /* Localizable.strings */; };
 		0404FAA414AC10360072EDA3 /* Icon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAA314AC10360072EDA3 /* Icon@2X.png */; };
 		0404FAA614AC10720072EDA3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAA514AC10720072EDA3 /* Icon.png */; };
 		0404FAAC14AC139C0072EDA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAAE14AC139C0072EDA3 /* InfoPlist.strings */; };
@@ -278,7 +277,6 @@
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				0404FA9514AC07A90072EDA3 /* Localizable.strings in Resources */,
-				0404FA9614AC07A90072EDA3 /* Localizable.strings in Resources */,
 				0404FAA414AC10360072EDA3 /* Icon@2X.png in Resources */,
 				0404FAA614AC10720072EDA3 /* Icon.png in Resources */,
 				0404FAAC14AC139C0072EDA3 /* InfoPlist.strings in Resources */,

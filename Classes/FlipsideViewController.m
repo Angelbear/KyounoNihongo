@@ -49,7 +49,8 @@
 #define CSS @"<link rel=\"stylesheet\" href=\"frame.css\" type=\"text/css\">"
     NSString* finalContent=[NSString stringWithFormat:@"%@%@",CSS,[_tableData valueForKey:@"explain"]];
     [_kaisetsu loadHTMLString:finalContent baseURL:[NSURL fileURLWithPath: [[NSBundle mainBundle]  bundlePath]]];
-    [_image  loadImageFromURL:[NSURL URLWithString:[_tableData valueForKey:@"image"]]];
+    NSLog(@"%@%@",@"image:",[_tableData valueForKey:@"image"]);
+    [_image  loadImageFromURL:[NSURL URLWithString:[[_tableData valueForKey:@"image"] retain]]];
 }
 
 - (void)loadResultUrl:(NSString*) url {
