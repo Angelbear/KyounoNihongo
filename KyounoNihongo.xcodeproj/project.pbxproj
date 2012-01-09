@@ -10,11 +10,8 @@
 		0404FA8614ABFBFB0072EDA3 /* AsyncImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FA8514ABFBFB0072EDA3 /* AsyncImageView.m */; };
 		0404FA8914ABFDB10072EDA3 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FA8814ABFDB10072EDA3 /* MBProgressHUD.m */; };
 		0404FA8C14ABFEF70072EDA3 /* LoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FA8B14ABFEF70072EDA3 /* LoadViewController.m */; };
-		0404FA9514AC07A90072EDA3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FA9014AC07A90072EDA3 /* Localizable.strings */; };
 		0404FAA414AC10360072EDA3 /* Icon@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAA314AC10360072EDA3 /* Icon@2X.png */; };
 		0404FAA614AC10720072EDA3 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAA514AC10720072EDA3 /* Icon.png */; };
-		0404FAAC14AC139C0072EDA3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAAE14AC139C0072EDA3 /* InfoPlist.strings */; };
-		0404FAB314AC14550072EDA3 /* KyounoNihongo-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0404FAB214AC14550072EDA3 /* KyounoNihongo-Info.plist */; };
 		0404FAB714AC312C0072EDA3 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0404FAB614AC312C0072EDA3 /* SystemConfiguration.framework */; };
 		0404FABA14AC32910072EDA3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 0404FAB914AC32910072EDA3 /* Reachability.m */; };
 		0404FAC314AD514C0072EDA3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0404FAC114AD51270072EDA3 /* QuartzCore.framework */; };
@@ -22,6 +19,16 @@
 		045247D414ADF95A004FA37D /* FlipsideView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 045247D314ADF95A004FA37D /* FlipsideView-iPad.xib */; };
 		04B52E3C14ADBBD000318AA7 /* MainView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B52E3B14ADBBD000318AA7 /* MainView-iPad.xib */; };
 		091CAD881492F37D00853E12 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 091CAD871492F37D00853E12 /* JSONKit.m */; };
+		097729C914BA86A100B70FE4 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 097729C714BA86A100B70FE4 /* DatePickerViewController.m */; };
+		0980F92514BA86E700D7A858 /* DatePickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0980F92414BA86E700D7A858 /* DatePickerViewController.xib */; };
+		0980F94314BA9B0800D7A858 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980F94214BA9B0800D7A858 /* iTunesArtwork.png */; };
+		0980F94514BAB19C00D7A858 /* Icon@iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0980F94414BAB19C00D7A858 /* Icon@iPad.png */; };
+		09A73C3D14BAB6760056D031 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0980F93414BA948500D7A858 /* InfoPlist.strings */; };
+		09A73C3E14BAB6760056D031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0980F93614BA948500D7A858 /* Localizable.strings */; };
+		09A73C3F14BAB6760056D031 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0980F93C14BA953400D7A858 /* InfoPlist.strings */; };
+		09A73C4014BAB6760056D031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FA9014AC07A90072EDA3 /* Localizable.strings */; };
+		09A73C4114BAB6760056D031 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0980F93F14BA953D00D7A858 /* InfoPlist.strings */; };
+		09A73C4214BAB6760056D031 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0404FA9314AC07A90072EDA3 /* Localizable.strings */; };
 		09F9ABD114B2D0130005D9CB /* frame.css in Resources */ = {isa = PBXBuildFile; fileRef = 09F9ABD014B2D0130005D9CB /* frame.css */; };
 		1D3623260D0F684500981E51 /* KyounoNihongoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* KyounoNihongoAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
@@ -35,6 +42,17 @@
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		09A73C3B14BAB4EA0056D031 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = "com.apple.build-tasks.copy-strings-file";
+			fileType = text.plist.strings;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		0404FA8414ABFBFB0072EDA3 /* AsyncImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AsyncImageView.h; path = Classes/AsyncImageView.h; sourceTree = "<group>"; };
 		0404FA8514ABFBFB0072EDA3 /* AsyncImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AsyncImageView.m; path = Classes/AsyncImageView.m; sourceTree = "<group>"; };
@@ -46,19 +64,25 @@
 		0404FA9414AC07A90072EDA3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		0404FAA314AC10360072EDA3 /* Icon@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2X.png"; sourceTree = "<group>"; };
 		0404FAA514AC10720072EDA3 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		0404FAAD14AC139C0072EDA3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		0404FAB114AC13A70072EDA3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		0404FAB214AC14550072EDA3 /* KyounoNihongo-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "KyounoNihongo-Info.plist"; sourceTree = "<group>"; };
 		0404FAB614AC312C0072EDA3 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		0404FAB814AC32910072EDA3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Classes/Reachability.h; sourceTree = "<group>"; };
 		0404FAB914AC32910072EDA3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Classes/Reachability.m; sourceTree = "<group>"; };
 		0404FAC114AD51270072EDA3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		0404FAC814AD81C40072EDA3 /* ja-JP */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja-JP"; path = "ja-JP.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		044AE90214AD8491006FF0C3 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "iPad/MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		045247D314ADF95A004FA37D /* FlipsideView-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "FlipsideView-iPad.xib"; path = "iPad/FlipsideView-iPad.xib"; sourceTree = "<group>"; };
 		04B52E3B14ADBBD000318AA7 /* MainView-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainView-iPad.xib"; path = "iPad/MainView-iPad.xib"; sourceTree = "<group>"; };
 		091CAD861492F37D00853E12 /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JSONKit.h; path = Classes/JSONKit.h; sourceTree = "<group>"; };
 		091CAD871492F37D00853E12 /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JSONKit.m; path = Classes/JSONKit.m; sourceTree = "<group>"; };
+		097729C614BA86A100B70FE4 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DatePickerViewController.h; path = Classes/DatePickerViewController.h; sourceTree = "<group>"; };
+		097729C714BA86A100B70FE4 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DatePickerViewController.m; path = Classes/DatePickerViewController.m; sourceTree = "<group>"; };
+		0980F92414BA86E700D7A858 /* DatePickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DatePickerViewController.xib; path = iPad/DatePickerViewController.xib; sourceTree = "<group>"; };
+		0980F93514BA948500D7A858 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = InfoPlist.strings; sourceTree = "<group>"; };
+		0980F93714BA948500D7A858 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = Localizable.strings; sourceTree = "<group>"; };
+		0980F93D14BA953400D7A858 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		0980F94014BA953D00D7A858 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		0980F94214BA9B0800D7A858 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		0980F94414BAB19C00D7A858 /* Icon@iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@iPad.png"; sourceTree = "<group>"; };
 		09F9ABD014B2D0130005D9CB /* frame.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = frame.css; sourceTree = "<group>"; };
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* KyounoNihongoAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KyounoNihongoAppDelegate.h; sourceTree = "<group>"; };
@@ -96,6 +120,7 @@
 		0404FA8F14AC07A90072EDA3 /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				0980F93C14BA953400D7A858 /* InfoPlist.strings */,
 				0404FA9014AC07A90072EDA3 /* Localizable.strings */,
 			);
 			path = en.lproj;
@@ -104,6 +129,7 @@
 		0404FA9214AC07A90072EDA3 /* zh-Hans.lproj */ = {
 			isa = PBXGroup;
 			children = (
+				0980F93F14BA953D00D7A858 /* InfoPlist.strings */,
 				0404FA9314AC07A90072EDA3 /* Localizable.strings */,
 			);
 			path = "zh-Hans.lproj";
@@ -112,6 +138,7 @@
 		044AE90114AD8490006FF0C3 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
+				0980F92414BA86E700D7A858 /* DatePickerViewController.xib */,
 				045247D314ADF95A004FA37D /* FlipsideView-iPad.xib */,
 				04B52E3B14ADBBD000318AA7 /* MainView-iPad.xib */,
 				044AE90214AD8491006FF0C3 /* MainWindow-iPad.xib */,
@@ -127,6 +154,15 @@
 			);
 			name = "Application Delegate";
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		0980F93314BA948500D7A858 /* ja.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				0980F93414BA948500D7A858 /* InfoPlist.strings */,
+				0980F93614BA948500D7A858 /* Localizable.strings */,
+			);
+			path = ja.lproj;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -158,9 +194,13 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0980F93314BA948500D7A858 /* ja.lproj */,
+				097729C614BA86A100B70FE4 /* DatePickerViewController.h */,
+				097729C714BA86A100B70FE4 /* DatePickerViewController.m */,
 				0404FAB814AC32910072EDA3 /* Reachability.h */,
 				0404FAB914AC32910072EDA3 /* Reachability.m */,
 				0404FAA514AC10720072EDA3 /* Icon.png */,
+				0980F94414BAB19C00D7A858 /* Icon@iPad.png */,
 				0404FAA314AC10360072EDA3 /* Icon@2X.png */,
 				0404FA8F14AC07A90072EDA3 /* en.lproj */,
 				0404FA9214AC07A90072EDA3 /* zh-Hans.lproj */,
@@ -196,12 +236,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				0980F94214BA9B0800D7A858 /* iTunesArtwork.png */,
 				09F9ABD014B2D0130005D9CB /* frame.css */,
 				0404FAB214AC14550072EDA3 /* KyounoNihongo-Info.plist */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
-				0404FAAE14AC139C0072EDA3 /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -230,6 +270,7 @@
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
 			);
 			buildRules = (
+				09A73C3B14BAB4EA0056D031 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -258,6 +299,7 @@
 				en,
 				"zh-Hans",
 				"ja-JP",
+				ja,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -273,18 +315,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09A73C3D14BAB6760056D031 /* InfoPlist.strings in Resources */,
+				09A73C3E14BAB6760056D031 /* Localizable.strings in Resources */,
+				09A73C3F14BAB6760056D031 /* InfoPlist.strings in Resources */,
+				09A73C4014BAB6760056D031 /* Localizable.strings in Resources */,
+				09A73C4114BAB6760056D031 /* InfoPlist.strings in Resources */,
+				09A73C4214BAB6760056D031 /* Localizable.strings in Resources */,
 				280E754D0DD40C5E005A515E /* FlipsideView.xib in Resources */,
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
-				0404FA9514AC07A90072EDA3 /* Localizable.strings in Resources */,
 				0404FAA414AC10360072EDA3 /* Icon@2X.png in Resources */,
 				0404FAA614AC10720072EDA3 /* Icon.png in Resources */,
-				0404FAAC14AC139C0072EDA3 /* InfoPlist.strings in Resources */,
-				0404FAB314AC14550072EDA3 /* KyounoNihongo-Info.plist in Resources */,
 				044AE90314AD8491006FF0C3 /* MainWindow-iPad.xib in Resources */,
 				04B52E3C14ADBBD000318AA7 /* MainView-iPad.xib in Resources */,
 				045247D414ADF95A004FA37D /* FlipsideView-iPad.xib in Resources */,
 				09F9ABD114B2D0130005D9CB /* frame.css in Resources */,
+				0980F92514BA86E700D7A858 /* DatePickerViewController.xib in Resources */,
+				0980F94314BA9B0800D7A858 /* iTunesArtwork.png in Resources */,
+				0980F94514BAB19C00D7A858 /* Icon@iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,6 +352,7 @@
 				0404FA8914ABFDB10072EDA3 /* MBProgressHUD.m in Sources */,
 				0404FA8C14ABFEF70072EDA3 /* LoadViewController.m in Sources */,
 				0404FABA14AC32910072EDA3 /* Reachability.m in Sources */,
+				097729C914BA86A100B70FE4 /* DatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,12 +375,34 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		0404FAAE14AC139C0072EDA3 /* InfoPlist.strings */ = {
+		0980F93414BA948500D7A858 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				0404FAAD14AC139C0072EDA3 /* en */,
-				0404FAB114AC13A70072EDA3 /* zh-Hans */,
-				0404FAC814AD81C40072EDA3 /* ja-JP */,
+				0980F93514BA948500D7A858 /* ja */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0980F93614BA948500D7A858 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0980F93714BA948500D7A858 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		0980F93C14BA953400D7A858 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0980F93D14BA953400D7A858 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		0980F93F14BA953D00D7A858 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0980F94014BA953D00D7A858 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -350,7 +421,7 @@
 				GCC_PREFIX_HEADER = KyounoNihongo_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KyounoNihongo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = KyounoNihongo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -365,7 +436,7 @@
 				GCC_PREFIX_HEADER = KyounoNihongo_Prefix.pch;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "KyounoNihongo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = KyounoNihongo;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -381,6 +452,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -394,6 +466,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

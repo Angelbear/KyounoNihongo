@@ -24,7 +24,7 @@
     _kaisetsu.clipsToBounds = YES;
     _kaisetsu.backgroundColor = [UIColor blackColor];
     _kaisetsu.scalesPageToFit = NO;
-    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];      
+    //self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];      
 }
 
 
@@ -54,22 +54,13 @@
 
 - (void)loadResultUrl:(NSString*) url {
     if([[NSUserDefaults standardUserDefaults] dictionaryForKey:@"kaisetsu"] != nil) {
-        NSTimeInterval timeInteval = [[NSUserDefaults standardUserDefaults] doubleForKey:@"timestamp"];
-        NSTimeInterval inteval = [[NSDate date] timeIntervalSince1970];
-        NSLog(@"%f, %f, %d", timeInteval, inteval, ((int)inteval) % (60 * 60 * 24)) ;
-        // Get the inteval of 00:00 today.
-        inteval -=  (((int)inteval) % (60 * 60 * 24));
-        NSLog(@"%f, %f", timeInteval, inteval);
-        if (timeInteval > inteval) {
-            id kaisetsu = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"kaisetsu"];
-            if([kaisetsu valueForKey:url] != nil) {
-                _tableData = [kaisetsu valueForKey:url];
-                [self updateUI];
-                return;
-            }
+        id kaisetsu = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"kaisetsu"];
+        if([kaisetsu valueForKey:url] != nil) {
+            _tableData = [kaisetsu valueForKey:url];
+            [self updateUI];
+            return;
         }
     }
-
     
     NSString* finalUrl  = [NSString stringWithFormat:@"http://kyounonihonngo.sinaapp.com/result.php?url=%@",[self encodeToPercentEscapeString:url]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];         
@@ -80,10 +71,11 @@
 	NSString* str = [[[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	_tableData = [[str objectFromJSONStringWithParseOptions:JKParseOptionValidFlags] retain];
     NSMutableDictionary* kaisetsu = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"kaisetsu"]];
-    if(kaisetsu != nil) {
-        [kaisetsu setValue:_tableData forKey:url];
-        [[NSUserDefaults standardUserDefaults] setValue:kaisetsu forKey:@"kaisetsu"];
+    if(kaisetsu == nil) {
+        kaisetsu = [[NSMutableDictionary alloc] init];
     }
+    [kaisetsu setValue:_tableData forKey:url];
+    [[NSUserDefaults standardUserDefaults] setValue:kaisetsu forKey:@"kaisetsu"];
     
     [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 	[request release];

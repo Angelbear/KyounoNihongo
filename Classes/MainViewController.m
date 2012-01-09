@@ -11,6 +11,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 @implementation MainViewController
+@synthesize currentDate;
 
 
 /*
@@ -35,7 +36,7 @@
 }  
 
 
-- (IBAction)showInfo:(id)sender {    
+- (void)showInfo:(id)sender {    
 	
     NSString *  nsStrIphone=@"iPhone";  
     NSString *  nsStrIpod=@"iPod";  
@@ -62,6 +63,101 @@
 	[controller release];
 }
 
+- (void)changeDate:(UIDatePicker *)sender {
+    tmpDate = sender.date;
+}
+
+- (void)removeViews:(id)object {
+    [[self.view viewWithTag:9] removeFromSuperview];
+    [[self.view viewWithTag:10] removeFromSuperview];
+    [[self.view viewWithTag:11] removeFromSuperview];
+}
+
+- (void)dismissDatePicker:(id)sender {
+    CGRect toolbarTargetFrame = CGRectMake(0, self.view.bounds.size.height, 320, 44);
+    CGRect datePickerTargetFrame = CGRectMake(0, self.view.bounds.size.height+44, 320, 216);
+    [UIView beginAnimations:@"MoveOut" context:nil];
+    [self.view viewWithTag:9].alpha = 0;
+    [self.view viewWithTag:10].frame = datePickerTargetFrame;
+    [self.view viewWithTag:11].frame = toolbarTargetFrame;
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(removeViews:)];
+    [UIView commitAnimations];
+}
+
+- (void)dismissDatePickerCancel:(id)sender {
+    [self dismissDatePicker:sender];
+}
+
+- (void)dismissDatePickerConfirm:(id)sender {
+    [self dismissDatePicker:sender];
+    self.currentDate = tmpDate != nil ? tmpDate : [NSDate date];
+    [self showMondai:self.currentDate];
+}
+
+UIPopoverController* _pop; 
+-(void) doneSelectDate:(NSDate*)date {
+    [self showMondai:date];
+    [_pop dismissPopoverAnimated:YES];
+}
+
+
+
+- (IBAction)calliPadDP:(id)sender {
+    DatePickerViewController* controller = [[DatePickerViewController alloc] initWithNibName:@"DatePickerViewController" bundle:nil delegate:self date:currentDate];
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:controller];
+    
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:nav];
+	popover.popoverContentSize = CGSizeMake(320, 250); //弹出窗口大小，如果屏幕画不下，会挤小的。这个值默认是320x1100
+    
+	CGRect popoverRect = CGRectMake(740, 20, 5, 5);
+	[popover presentPopoverFromRect:popoverRect  //popoverRect的中心点是用来画箭头的，如果中心点如果出了屏幕，系统会优化到窗口边缘
+							 inView:self.view //上面的矩形坐标是以这个view为参考的
+		   permittedArrowDirections:UIPopoverArrowDirectionUp  //箭头方向
+						   animated:YES];
+    _pop = popover;
+}
+
+- (IBAction)callDP:(id)sender {
+    if ([self.view viewWithTag:9]) {
+        return;
+    }
+    CGRect toolbarTargetFrame = CGRectMake(0, self.view.bounds.size.height-216-44, 320, 44);
+    CGRect datePickerTargetFrame = CGRectMake(0, self.view.bounds.size.height-216, 320, 216);
+    
+    UIView *darkView = [[[UIView alloc] initWithFrame:self.view.bounds] autorelease];
+    darkView.alpha = 0;
+    darkView.backgroundColor = [UIColor blackColor];
+    darkView.tag = 9;
+    UITapGestureRecognizer *tapGesture = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissDatePickerCancel:)] autorelease];
+    [darkView addGestureRecognizer:tapGesture];
+    [self.view addSubview:darkView];
+    
+    UIDatePicker *datePicker = [[[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height+44, 320, 216)] autorelease];
+    datePicker.tag = 10;
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    datePicker.date = self.currentDate;
+    datePicker.minimumDate = [NSDate dateWithTimeIntervalSince1970:1325635200.00];
+    datePicker.maximumDate = [NSDate date];
+    [datePicker addTarget:self action:@selector(changeDate:) forControlEvents:UIControlEventValueChanged];
+    [self.view addSubview:datePicker];
+    
+    UIToolbar *toolBar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height, 320, 44)] autorelease];
+    toolBar.tag = 11;
+    toolBar.barStyle = UIBarStyleBlackTranslucent;
+    UIBarButtonItem *spacer = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil] autorelease];
+    UIBarButtonItem *doneButton = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissDatePickerConfirm:)] autorelease];
+    [toolBar setItems:[NSArray arrayWithObjects:spacer, doneButton, nil]];
+    [self.view addSubview:toolBar];
+    
+    [UIView beginAnimations:@"MoveIn" context:nil];
+    toolBar.frame = toolbarTargetFrame;
+    datePicker.frame = datePickerTargetFrame;
+    darkView.alpha = 0.5;
+    [UIView commitAnimations];
+}
+
+
 -(void) updateUI {
     [_tableView reloadData];
 #define CSS @"<link rel=\"stylesheet\" href=\"frame.css\" type=\"text/css\">"
@@ -71,17 +167,25 @@
 
 BOOL _loading = YES;
 
-- (void) loadUrl {
+- (void) loadUrl:(NSDate*)date {
     _loading = YES;
+    NSDateFormatter *df = [NSDateFormatter new];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSLog(@"%@",[df stringFromDate:date]);
 	NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];         
-	[request setURL:[NSURL URLWithString:@"http://kyounonihonngo.sinaapp.com/"]];
+	[request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://kyounonihonngo.sinaapp.com/?date=%@",[df stringFromDate:date]]]];
 	[request setHTTPMethod:@"GET"];
 	NSData *returnData = [NSURLConnection sendSynchronousRequest:request 
 											   returningResponse:nil error:nil]; 
 	NSString* str = [[[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	_tableData = [[str objectFromJSONStringWithParseOptions:JKParseOptionValidFlags] retain];
-    [[NSUserDefaults standardUserDefaults] setValue:_tableData forKey:@"mondai"];
-    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timestamp"];
+    NSMutableDictionary* mondai = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"mondai"]];
+    if(mondai == nil) {
+        mondai = [[NSMutableDictionary alloc] init];
+    }
+    [mondai setValue:_tableData forKey:[df stringFromDate:date]];
+    [[NSUserDefaults standardUserDefaults] setValue:mondai forKey:@"mondai"];
+    [df release];
     _loading = NO;
     [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:NO];
 	[request release];
@@ -139,6 +243,13 @@ BOOL _loading = YES;
     return @"";
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    if(section == 1) {
+        return @"Copyright © 2012 ChaosYang. All Rights Reserved.";
+    }
+    return @"";
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         selectedRow = indexPath.row;
@@ -150,6 +261,23 @@ BOOL _loading = YES;
     }
 }
 
+-(void) showMondai:(NSDate*) date {
+    self.currentDate = date;
+    if([[NSUserDefaults standardUserDefaults] dictionaryForKey:@"mondai"] != nil) {
+        id mondai = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"mondai"];
+        NSDateFormatter *df = [NSDateFormatter new];
+        [df setDateFormat:@"yyyy-MM-dd"];
+        if([mondai valueForKey:[df stringFromDate:date]] != nil) {
+            _loading = NO;
+            _tableData = [mondai valueForKey:[df stringFromDate:date]] ;
+            [df release];
+            [self updateUI];
+            return;
+        }
+        [df release];
+    }
+    [self startProcess:@selector(loadUrl:) target:self withObject:date name:NSLocalizedString(@"Loading...",@"")];
+}
 -(void) viewDidLoad {
 	[super viewDidLoad];
     _webView.layer.cornerRadius = 12;
@@ -165,21 +293,8 @@ BOOL _loading = YES;
     _tableView.allowsSelection = YES;
     _navBar.topItem.title = NSLocalizedString(@"KyounoNihongo",@"");
     
-    if([[NSUserDefaults standardUserDefaults] dictionaryForKey:@"mondai"] != nil) {
-        NSTimeInterval timeInteval = [[NSUserDefaults standardUserDefaults] doubleForKey:@"timestamp"];
-        NSTimeInterval inteval = [[NSDate date] timeIntervalSince1970];
-        NSLog(@"%f, %f, %d", timeInteval, inteval, ((int)inteval) % (60 * 60 * 24)) ;
-        // Get the inteval of 00:00 today.
-        inteval -=  (((int)inteval) % (60 * 60 * 24));
-        NSLog(@"%f, %f", timeInteval, inteval);
-        if (timeInteval > inteval) {
-            _loading = NO;
-            _tableData = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"mondai"];
-            [self updateUI];
-            return;
-        }
-    }
-    [self startProcess:@selector(loadUrl) target:self withObject:nil name:NSLocalizedString(@"Loading...",@"")];
+    self.currentDate = [NSDate date];
+    [self showMondai:self.currentDate];
     
 }
 
