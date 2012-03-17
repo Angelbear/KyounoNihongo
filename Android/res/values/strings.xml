@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+    <string name="app_name">KyounoNihongo</string>
+    <string name="see_answer">See Answer</string>
+    <string name="choose_date">Choose Date</string>
+    <string name="update_message">There is a new version, update?</string>
+</resources>

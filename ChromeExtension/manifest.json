@@ -1,0 +1,13 @@
+﻿{
+  "name": "今日的日本语检定",
+  "version": "1.0",
+  "description": "今日的日本语检定Chrome插件",
+  "browser_action": {
+    "default_icon": "icon.png",
+	"default_popup": "main.html"
+  },
+  "background_page": "background.html",
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*","contextMenus","notifications"
+  ]
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <WebView
+        android:id="@+id/mondai"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_margin="10dip"
+        android:layout_weight="0.49" />
+
+    <ListView
+        android:id="@+id/choices"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_margin="5dip"
+        android:choiceMode="singleChoice"
+        android:scrollbars="none" >
+
+        <!-- Preview: listitem=@android:layout/simple_list_item_checked -->
+
+    </ListView>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="seeAnswer"
+        android:text="@string/see_answer" />
+
+</LinearLayout>

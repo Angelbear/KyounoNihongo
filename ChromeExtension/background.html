@@ -1,0 +1,31 @@
+﻿<script src="chrome_ex_oauthsimple.js"></script>
+<script src="chrome_ex_oauth.js"></script>
+<script>
+var oauth=ChromeExOAuth.initBackgroundPage({
+    'request_url': "http://api.t.sina.com.cn/oauth/request_token",
+    'authorize_url': "http://api.t.sina.com.cn/oauth/authorize",
+    'access_url': "http://api.t.sina.com.cn/oauth/access_token",
+    'consumer_key':"2214623885",
+    'consumer_secret': "eb1f7df8ca19b7199dd00d067d5347e3",
+    'scope':'',
+    'app_name': "今日的日本语检定插件"
+}); 
+var updateUrl = "http://api.t.sina.com.cn/statuses/update.json";
+
+function authorize() {
+     oauth.authorize(function() {
+      
+    });
+}
+function updateWeibo(text) {
+var request = {
+        'method': 'post',
+        'parameters':{
+                'status':text
+         }
+};
+oauth.sendSignedRequest(updateUrl, function(resp,xhr){
+     alert(resp);
+   }, request);
+}
+</script>
