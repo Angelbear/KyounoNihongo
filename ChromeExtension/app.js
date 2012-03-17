@@ -23,20 +23,13 @@ Ext
 		
 		var background = chrome.extension.getBackgroundPage();
 		var oauth = background.oauth;
+	
 		function Ouath(){
 		  if (oauth.hasToken())
 		  {
 				alert("已经授权");
 		  }else{
 				background.authorize();
-		  }
-		}
-		function ClearOuath(){
-			oauth.clearTokens();
-		  if (oauth.hasToken()){
-				alert("退出失败 检查代码");
-		  }else{
-				alert("退出成功");
 		  }
 		}
 		
@@ -50,33 +43,35 @@ Ext
 			}
 		}
 
+		var currentMondai;
 		function updateMondai(date) {
 			Ext.Ajax
 					.request({
 						url : 'http://kyounonihonngo.sinaapp.com/mondai.php?date=' + date,
 						success : function(response, opts) {
-							var myObject = eval('('
+							currentMondai = eval('('
 									+ response.responseText + ')');
 							Ext
 									.getCmp('mondai')
-									.update(decodeURIComponent(myObject.question).replace('span+class=goken-ul','goken').replace('span','goken'));
+									.update(decodeURIComponent(currentMondai.question).replace('span+class=goken-ul','goken').replace('span','goken'));
 							Ext.getCmp('choice1').labelEl
-									.update(decodeURIComponent(myObject.choice[0].text));
+									.update(decodeURIComponent(currentMondai.choice[0].text));
 							Ext.getCmp('choice2').labelEl
-									.update(decodeURIComponent(myObject.choice[1].text));
+									.update(decodeURIComponent(currentMondai.choice[1].text));
 							Ext.getCmp('choice3').labelEl
-									.update(decodeURIComponent(myObject.choice[2].text));
+									.update(decodeURIComponent(currentMondai.choice[2].text));
 
 							Ext.getCmp('choice1').setValue(
-									myObject.choice[0].link);
+									currentMondai.choice[0].link);
 							Ext.getCmp('choice2').setValue(
-									myObject.choice[1].link);
+									currentMondai.choice[1].link);
 							Ext.getCmp('choice3').setValue(
-									myObject.choice[2].link);
+									currentMondai.choice[2].link);
 						}
 					});
 		}
 
+		var currentResult;
 		var tapHandler = function(btn, evt) {
 			localStorage[selectedDate] = true;
 			checkNewMondai();
@@ -86,13 +81,13 @@ Ext
 					.request({
 						url : 'http://kyounonihonngo.sinaapp.com/result.php?url=' + url,
 						success : function(response, opts) {
-							var myObject = eval('('
+							currentResult = eval('('
 									+ response.responseText + ')');
 							Ext
 									.getCmp('answer')
 									.setValue(
-											decodeURIComponent(myObject.explain));
-							var imgname = decodeURIComponent(myObject.image);
+											decodeURIComponent(currentResult.explain));
+							var imgname = decodeURIComponent(currentResult.image);
 							if (imgname.match('huseikai.gif') != null) {
 								Ext
 										.getCmp('image')
@@ -118,7 +113,12 @@ Ext
 		};
 
 		var shareHandler = function(btn, evt) {
-			background.updateWeibo('123');
+		  if(currentMondai) {
+			var weibo = decodeURIComponent(currentMondai.question).replace('<span+class=goken-ul>','<').replace('</span>','>') + " 1." + decodeURIComponent(currentMondai.choice[0].text) + " 2." + decodeURIComponent(currentMondai.choice[1].text) + " 3." + decodeURIComponent(currentMondai.choice[2].text);
+			
+			weibo = weibo + "\t" + selectedDate + "的#今日的日本语检定#" + "http://kyounonihonngo.sinaapp.com/gokenlist.php?date="+selectedDate;
+			background.updateWeibo(weibo);
+		  }
 		};
 
 		var aboutHandler = function(btn, evt) {
