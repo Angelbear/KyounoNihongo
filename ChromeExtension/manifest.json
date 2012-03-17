@@ -2,6 +2,10 @@
   "name": "今日的日本语检定",
   "version": "1.0",
   "description": "今日的日本语检定Chrome插件",
+  "icons": { "16": "icon_16.png",
+             "48": "icon_48.png",
+		     "128": "icon_128.png" 
+  },
   "browser_action": {
     "default_icon": "icon.png",
 	"default_popup": "main.html"
