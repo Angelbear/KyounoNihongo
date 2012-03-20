@@ -18,10 +18,6 @@ Ext
 			  });
 
 			  var background = chrome.extension.getBackgroundPage();
-			  var oauth = background.oauth;
-			  var loginHandler = function(btn, evt) {
-				background.authorize();
-			  };
 
 
 			  function updateMondaiUI() {
@@ -143,12 +139,6 @@ Ext
 				},
 				{
 				  xtype: 'spacer'
-				},
-				{
-				  xtype : 'button',
-				  ui : 'round',
-				  text : '微博授权',
-				  handler : loginHandler
 				}],
 				dockedItems : [ 
 				{
@@ -300,14 +290,6 @@ Ext
 				{
 				  xtype : 'panel',
 				  html : '<br><center>今日的日本语检定Chrome插件是由poweruser开发#今日的日本语检定#的Chrome插件，所用数据均来自<a href="http://www.jiji.com" media="handheld" rel=external>時事ドットコム</a>，并<b>不用作商业用途</b>。欢迎指出bug，提出更好修改建议！</center><center>联系作者:<a href="mailto:yangyang.zhao.thu@gmail.com">yangyang.zhao.thu@gmail.com</a><br></center><br>',
-				},{
-				  xtype : 'button',
-				  ui : 'round',
-				  text : '推荐到新浪微博',
-				  handler : function() {
-					background.updateWeibo('我正在使用#今日的日本语检定Chrome插件#，感觉不错哦，你也来试试吧 http://kyounonihonngo.sinaapp.com/');
-				  }
-
 				} ],
 				dockedItems : [ {
 								xtype : 'toolbar',
@@ -339,26 +321,15 @@ Ext
 
 			  formabout = new Ext.form.FormPanel(about);
 
-			  if(oauth.hasToken()) {
-				var inner = new Ext.Panel({
-				  layout : 'card',
+			  var inner = new Ext.Panel({
+				layout : 'card',
 				  fullscreen : true,
 				  width: '400px',
 				  height: '600px',
 				  items : [ form, formback, formabout ]
-				});
-				inner.show();
-				updateMondai(selectedDate);
-				background.checkNewMondai();
-			  }else {
-				var inner = new Ext.Panel({
-				  layout : 'card',
-				  fullscreen : true,
-				  width: '400px',
-				  height: '600px',
-				  items : [ formwelcome]
-				});
-				inner.show();
-			  }
+			  });
+			  inner.show();
+			  updateMondai(selectedDate);
+			  background.checkNewMondai();
 			}
 });

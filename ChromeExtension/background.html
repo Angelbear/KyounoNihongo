@@ -1,62 +1,14 @@
-﻿<script src="chrome_ex_oauthsimple.js"></script>
-<script src="chrome_ex_oauth.js"></script>
-<script type="text/javascript" src="sencha-touch.js"></script>
+﻿<script type="text/javascript" src="sencha-touch.js"></script>
 <script>
-  var oauth=ChromeExOAuth.initBackgroundPage({
-	'request_url': "http://api.t.sina.com.cn/oauth/request_token",
-	'authorize_url': "http://api.t.sina.com.cn/oauth/authorize",
-	'access_url': "http://api.t.sina.com.cn/oauth/access_token",
-	'consumer_key':"2214623885",
-	'consumer_secret': "eb1f7df8ca19b7199dd00d067d5347e3",
-	'scope':'',
-	'app_name': "今日的日本语检定插件"
-  }); 
-  var updateUrl = "http://api.t.sina.com.cn/statuses/update.json";
-
   setInterval("checkNewMondai()", 60 * 60 * 1000);
-
   function checkNewMondai() {
-	if(oauth.hasToken()) {
-	  var today = new Date().format('Y-m-d');
-	  var doneToday = localStorage[today];
-	  if( doneToday == undefined ) {
-		chrome.browserAction.setBadgeText({text: '1'});
-		}else{
-		chrome.browserAction.setBadgeText({text: ''});
-	  }
+	var today = new Date().format('Y-m-d');
+	var doneToday = localStorage[today];
+	if( doneToday == undefined ) {
+	  chrome.browserAction.setBadgeText({text: '1'});
+	  }else{
+	  chrome.browserAction.setBadgeText({text: ''});
 	}
   }
-  
   checkNewMondai();
-
-  function authorize() {
-	oauth.authorize(function() {
-
-	});
-  }
-  function updateWeibo(text) {
-	var request = {
-	  'method': 'post',
-	  'parameters':{
-		'status':text
-	  }
-	};
-	oauth.sendSignedRequest(updateUrl, function(resp,xhr){
-	  var result = JSON.parse(resp);
-	  if(result['error_code'] != undefined) {
-		var notification = webkitNotifications.createNotification(
-		'icon.png',  // icon url - can be relative
-		'今日的日本语检定',  // notification title
-		result['error_code'] +" "+ result['error'] // notification body text
-		);
-		}else {
-		var notification = webkitNotifications.createNotification(
-		'icon.png',  // icon url - can be relative
-		'今日的日本语检定',  // notification title
-		'发送成功'  // notification body text
-		);
-	  }
-	  notification.show();
-	}, request);
-  }
 </script>
