@@ -41,6 +41,7 @@ Ext
 			  }
 
 			  var currentMondai;
+
 			  function updateMondai(date) {
 				var mondai = localStorage[date];
 				if(mondai == undefined) {
@@ -107,15 +108,6 @@ Ext
 				});
 			  };
 
-			  var shareHandler = function(btn, evt) {
-				if(currentMondai) {
-				  var weibo = decodeURIComponent(currentMondai.question).replace('<span+class=goken-ul>','<').replace('</span>','>') + " 1." + decodeURIComponent(currentMondai.choice[0].text) + " 2." + decodeURIComponent(currentMondai.choice[1].text) + " 3." + decodeURIComponent(currentMondai.choice[2].text);
-
-				  weibo = weibo + "\t" + selectedDate + "的#今日的日本语检定#" + "http://kyounonihonngo.sinaapp.com/gokenlist.php?date="+selectedDate;
-				  background.updateWeibo(weibo);
-				}
-			  };
-
 			  var aboutHandler = function(btn, evt) {
 				inner.setActiveItem(formabout, {
 				  type : 'slide'
@@ -126,28 +118,6 @@ Ext
 			  var formback;
 			  var mondai;
 			  var kaisetsu;
-			  var welcome;
-
-
-			  welcome = {
-				standardSubmit : false,
-				width: '400px',
-				height: '600px',
-				items: [ {
-				  xtype : 'panel',
-				  html : '<br><center>今日的日本语检定Chrome插件是由poweruser开发#今日的日本语检定#的Chrome插件，所用数据均来自<a href="http://www.jiji.com" media="handheld" rel=external>時事ドットコム</a>，并<b>不用作商业用途</b>。欢迎指出bug，提出更好修改建议！</center><center>联系作者:<a href="mailto:yangyang.zhao.thu@gmail.com">yangyang.zhao.thu@gmail.com</a><br></center><br>',
-				},
-				{
-				  xtype: 'spacer'
-				}],
-				dockedItems : [ 
-				{
-				  xtype : 'toolbar',
-				  dock : 'top',
-				  title : '今日的日本语检定',
-				  items : [ ]
-				} ]
-			  };
 
 			  mondai = {
 				standardSubmit : false,
@@ -254,7 +224,7 @@ Ext
 					xtype : 'textareafield',
 					id : 'answer',
 					value : 'value',
-					maxRows : 16,
+					maxRows : 18,
 					preventScrollbars: false,
 					listeners : {
 					  afterrender : function(ele) {
@@ -262,26 +232,19 @@ Ext
 									}
 					}
 				  } ]
-				} ,{
-				  xtype : 'button',
-				  ui : 'round',
-				  text : '分享到新浪微博',
-				  handler : shareHandler
-
-				}],
-				  dockedItems : [ {
-								  xtype : 'toolbar',
-								  dock : 'top',
-								  title : '解答',
-								  items : [ {
-									iconMask : true,
-									ui : 'back',
-									text : '后退',
-									handler : tapHandler2
-								  } ]
+				} ],
+				dockedItems : [ {
+								xtype : 'toolbar',
+								dock : 'top',
+								title : '解答',
+								items : [ {
+								  iconMask : true,
+								  ui : 'back',
+								  text : '后退',
+								  handler : tapHandler2
 								} ]
+							  } ]
 			  };
-
 			  about = {
 				standardSubmit : false,
 				width: '400px',
@@ -289,8 +252,16 @@ Ext
 				items : [
 				{
 				  xtype : 'panel',
-				  html : '<br><center>今日的日本语检定Chrome插件是由poweruser开发#今日的日本语检定#的Chrome插件，所用数据均来自<a href="http://www.jiji.com" media="handheld" rel=external>時事ドットコム</a>，并<b>不用作商业用途</b>。欢迎指出bug，提出更好修改建议！</center><center>联系作者:<a href="mailto:yangyang.zhao.thu@gmail.com">yangyang.zhao.thu@gmail.com</a><br></center><br>',
-				} ],
+				  html : '<br><center>今日的日本语检定Chrome插件是由poweruser开发#今日的日本语检定#的Chrome插件，所用数据均来自<a href="javascript:chrome.tabs.create({url:\'http://www.jiji.com\'}, function() {});">時事ドットコム</a>，并<b>不用作商业用途</b>。欢迎指出bug，提出更好修改建议！</center><center>联系作者:<a href="mailto:yangyang.zhao.thu@gmail.com">yangyang.zhao.thu@gmail.com</a><br></center><br><center>此外欢迎使用新浪微博版本，可以发送每日趣题到新浪微博，请访问<a href="javascript:chrome.tabs.create({url:\'http://kyounonihonngo.sinaapp.com/\'}, function() {});">今日的日本语检定</a>来查看更多详情</center><br>',
+				},
+				{
+				  xtype : 'button',
+				  ui : 'round',
+				  text : '下载新浪微博版本',
+				  handler : function() {
+					chrome.tabs.create({url:'http://kyounonihonngo.sinaapp.com/app/KyounoNihongo.crx'}, function(){});
+				  }
+				}			],
 				dockedItems : [ {
 								xtype : 'toolbar',
 								dock : 'top',
@@ -302,18 +273,11 @@ Ext
 								  handler : tapHandler2
 								}, {
 								  xtype: 'spacer'
-								},{ 
-								  text: '登出',
-								  ui : 'action',
-								  handler : function() {
-									oauth.clearTokens();
-								  }
-								}]
+								}
+								]
 							  } ]
 			  };
 
-
-			  var formwelcome = new Ext.form.FormPanel(welcome);
 
 			  form = new Ext.form.FormPanel(mondai);
 
