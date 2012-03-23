@@ -19,7 +19,6 @@ Ext
 
 			  var background = chrome.extension.getBackgroundPage();
 
-
 			  function updateMondaiUI() {
 				Ext
 				  .getCmp('mondai')
@@ -50,11 +49,13 @@ Ext
 					  url : 'http://kyounonihonngo.sinaapp.com/mondai.php?date=' + date,
 					  success : function(response, opts) {
 						currentMondai = JSON.parse(response.responseText);
+						chrome.browserAction.setBadgeText({text: ''});
 						localStorage[date] = response.responseText;
 						updateMondaiUI();
 					  }});
 				}else {
 				  currentMondai = JSON.parse(mondai);
+				  chrome.browserAction.setBadgeText({text: ''});
 				  updateMondaiUI();
 				}
 			  }

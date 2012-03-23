@@ -1,13 +1,33 @@
 ﻿<script type="text/javascript" src="sencha-touch.js"></script>
 <script>
   setInterval("checkNewMondai()", 60 * 60 * 1000);
+
+  function cacheResulturl(url) {
+	Ext.Ajax
+	.request({
+	  url : 'http://kyounonihonngo.sinaapp.com/result.php?url=' + url,
+	  success : function(response, opts) {
+		currentResult = JSON.parse(response.responseText);
+		localStorage[url]=response.responseText;
+	  }
+	});
+  }
+
   function checkNewMondai() {
 	var today = new Date().format('Y-m-d');
 	var doneToday = localStorage[today];
 	if( doneToday == undefined ) {
+	  Ext.Ajax
+	  .request({
+		url : 'http://kyounonihonngo.sinaapp.com/mondai.php?date=' + today,
+		success : function(response, opts) {
+		  currentMondai = JSON.parse(response.responseText);
+		  localStorage[today] = response.responseText;
+		  cacheResulturl(currentMondai.choice[0].link);
+		  cacheResulturl(currentMondai.choice[1].link);
+		  cacheResulturl(currentMondai.choice[2].link);
+	  }});
 	  chrome.browserAction.setBadgeText({text: '1'});
-	  }else{
-	  chrome.browserAction.setBadgeText({text: ''});
 	}
   }
   checkNewMondai();
