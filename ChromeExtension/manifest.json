@@ -1,16 +1,20 @@
 ﻿{
-  "name": "今日的日本语检定",
-  "version": "1.0.4",
+  "name": "今日の日本語検定",
+  "version": "1.0.5",
   "description": "今日的日本语检定Chrome插件,每天一题趣味日语问答，欢迎访问http://kyounonihonngo.sinaapp.com/",
   "icons": { "16": "icon_16.png",
              "48": "icon_48.png",
-		     "128": "icon_128.png" 
+            "128": "icon_128.png"
   },
   "browser_action": {
     "default_icon": "icon.png",
-	"default_popup": "main.html"
+    "default_popup": "main.html"
   },
-  "background_page": "background.html",
+  "manifest_version": 2,
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "background": {
+    "scripts": ["sencha-touch.js", "background.js"]
+  },
   "permissions": [
     "tabs", "http://*/*", "https://*/*","contextMenus","notifications"
   ]

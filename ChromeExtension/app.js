@@ -43,7 +43,7 @@ Ext
 
 			  function updateMondai(date) {
 				var mondai = localStorage[date];
-				if(mondai == undefined) {
+				if(mondai == undefined || mondai == "") {
 				  Ext.Ajax
 					.request({
 					  url : 'http://kyounonihonngo.sinaapp.com/mondai.php?date=' + date,
