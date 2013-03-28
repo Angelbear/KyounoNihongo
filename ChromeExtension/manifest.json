@@ -1,6 +1,6 @@
 ﻿{
   "name": "今日の日本語検定",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "今日的日本语检定Chrome插件,每天一题趣味日语问答，欢迎访问http://kyounonihonngo.sinaapp.com/",
   "icons": { "16": "icon_16.png",
              "48": "icon_48.png",
